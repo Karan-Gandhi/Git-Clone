@@ -2,10 +2,10 @@ CC				= g++
 CC_FLAGS 		= -g -Wall -std=c++17
 BUILD_DIR		= ./bin
 SRC_DIR			= ./src
-
+LIB_DIR			= ./lib
 
 build:
-	$(CC) $(CC_FLAGS) -o $(BUILD_DIR)/gitc $(SRC_DIR)/gitc.cpp
+	$(CC) $(CC_FLAGS) -o $(BUILD_DIR)/gitc $(SRC_DIR)/gitc.cpp $(LIB_DIR)/*.cpp
 	@echo "Build Complete"
 
 clean:

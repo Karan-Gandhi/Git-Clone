@@ -39,6 +39,8 @@ namespace gitc {
 
     private:
         Files files;
+        std::string HEAD; // contains the current commit id of the head
+
     };
 
 } // gitc
