@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[]) {
 //    gitc::gitc().add(".");
-
+    gitc::Index();
     if (argc == 1) {
         // display help info
     } else {
@@ -26,6 +26,11 @@ int main(int argc, char *argv[]) {
         }
 
         if (command == "add") {
+            if (argc == 2) {
+                std::cout << "Nothing specified, nothing added." << std::endl;
+                return 0;
+            }
+
             for (int i = 2; i < argc; i++) {
                 gitc::gitc().add(argv[i]);
             }
