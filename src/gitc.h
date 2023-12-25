@@ -36,8 +36,6 @@ namespace gitc {
         }
 
         void add(const std::string &path) {
-//            gitc::files::assert_files
-
             std::vector<std::string> added_files = Files::ls_recursive(path);
 
             if (added_files.empty()) {

@@ -11,7 +11,6 @@
 int main(int argc, char *argv[]) {
 //    gitc::gitc().add(".");
 
-
     if (argc == 1) {
         // display help info
     } else {

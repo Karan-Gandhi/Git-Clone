@@ -29,7 +29,7 @@ namespace gitc {
                     Index_entry *new_entry = new Index_entry();
 
                     new_entry->path = file;
-                    new_entry->stage_number = UNTRACKED;
+                    new_entry->stage_number = UNMODIFIED;
                     new_entry->hash = Files::create_hash(HASH_LENGTH); // now come up with a hash function
 
                     entries.push_back(new_entry);
