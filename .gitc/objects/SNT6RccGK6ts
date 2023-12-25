@@ -1,0 +1,11 @@
+# Features
+- [ ] gitc - display help commands
+- [ ] gitc init - initialise the repo
+- [ ] gitc add - add files
+- [ ] gitc commit - commit added files
+- [ ] gitc rm - remove added files
+- [ ] gitc log - display all the commits
+- [ ] gitc checkout - checkout a commit
+- [ ] ~~support for branches~~
+- [ ] ~~gitc status~~
+- 

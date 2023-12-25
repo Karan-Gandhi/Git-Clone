@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[]) {
 //    gitc::gitc().add(".");
+    gitc::Index();
     if (argc == 1) {
         // display help info
     } else {
@@ -34,14 +35,6 @@ int main(int argc, char *argv[]) {
                 gitc::gitc().add(argv[i]);
             }
         } else if (command == "rm") {
-            if (argc == 2) {
-                std::cout << "Nothing specified, nothing removed." << std::endl;
-                return 0;
-            }
-
-            for (int i = 2; i < argc; i++) {
-                gitc::gitc().rm(argv[i]);
-            }
 
         } else if (command == "commit") {
 
