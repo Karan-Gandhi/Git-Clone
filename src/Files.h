@@ -16,6 +16,7 @@
 #define GIT_CLONE_FILES_H
 
 namespace gitc {
+    const int HASH_LENGTH = 12;
 
     class Files {
     public:

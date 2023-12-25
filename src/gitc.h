@@ -4,6 +4,7 @@
 #include "Files.h"
 #include "Index.h"
 #include "Head.h"
+#include "Commit.h"
 
 #ifndef GIT_CLONE_GITC_H
 #define GIT_CLONE_GITC_H
@@ -35,6 +36,7 @@ namespace gitc {
             // create the .gitc directory
             Files::create_gitc_dir(Files::get_cwd());
             Files::create_file(Files::join_path(Files::get_cwd(), ".gitc/HEAD"));
+            Head::init();
             std::cout << "Initialized empty gitc repository in " << Files::get_cwd() << "/.gitc" << std::endl;
         }
 
@@ -62,7 +64,6 @@ namespace gitc {
 
             for (std::string &file: removed_files) {
                 // update the file in the index
-                std::cout << file << std::endl;
                 index->update(file, REMOVE);
             }
         }
@@ -71,11 +72,18 @@ namespace gitc {
 
         }
 
-        void commit() {
-
+        void commit(const std::string &message) {
+            // make a commit object, object tree (which is the snapshot of index), and update the head
+            Commit *new_commit = Commit::create_commit_from_index(*index, head->get_last_commit_hash(), message);
+            head->update_last_commit_hash(new_commit->get_commit_hash());
+            delete new_commit;
         }
 
         void checkout() {
+
+        }
+
+        void log() {
 
         }
 

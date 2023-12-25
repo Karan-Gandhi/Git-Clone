@@ -8,7 +8,6 @@
 #define GIT_CLONE_INDEX_H
 
 namespace gitc {
-    const int HASH_LENGTH = 12;
 
     enum Index_updates {
         REMOVE, ADD
@@ -17,6 +16,13 @@ namespace gitc {
     enum Stage_number {
         UNMODIFIED, STAGED, UNTRACKED
     };
+
+    struct Index_entry {
+        std::string path;
+        std::string hash;
+        Stage_number stage_number = UNMODIFIED;
+    };
+
 
     class Index {
     public:
@@ -86,12 +92,13 @@ namespace gitc {
             return false;
         }
 
+        std::vector<Index_entry *> get_entries() {
+            return entries;
+        }
+
+//
+
     private:
-        struct Index_entry {
-            std::string path;
-            std::string hash;
-            Stage_number stage_number = UNMODIFIED;
-        };
 
         std::vector<Index_entry *> entries;
 

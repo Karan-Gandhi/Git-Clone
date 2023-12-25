@@ -20,6 +20,26 @@ namespace gitc {
             write_to_file();
         }
 
+        void update_last_commit_hash(const std::string &hash) {
+            last_commit_hash = hash;
+        }
+
+        static void init() {
+            std::ofstream head_file(Files::join_path(Files::root_path(), ".gitc/HEAD"));
+            head_file << "refs/heads/master";
+            head_file.close();
+
+            mkdir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str(), 0777);
+
+            std::ofstream master(Files::join_path(Files::root_path(), ".gitc/refs/heads/master"));
+            master << "";
+            master.close();
+        }
+
+        std::string get_last_commit_hash() {
+            return last_commit_hash;
+        }
+
     private:
         std::string head_ref;
         std::string last_commit_hash;

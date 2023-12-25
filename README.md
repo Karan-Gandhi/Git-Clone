@@ -2,7 +2,7 @@
 - [ ] gitc - display help commands
 - [x] gitc init - initialise the repo
 - [x] gitc add - add files
-- [ ] gitc commit - commit added files
+- [x] gitc commit - commit added files
 - [x] gitc rm - remove added files
 - [ ] gitc log - display all the commits
 - [ ] gitc checkout - checkout a commit
