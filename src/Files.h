@@ -7,6 +7,8 @@
 #include <dirent.h>
 #include <fstream>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <random>
 
 #include "../include/cwalk.h"
 
@@ -28,7 +30,7 @@ namespace gitc {
 
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
-                    if (!f->d_name || std::string(f->d_name) == "." || std::string(f->d_name) == ".." ||
+                    if (std::string(f->d_name) == "." || std::string(f->d_name) == ".." ||
                         std::string(f->d_name) == ".gitc")
                         continue;
 
@@ -55,7 +57,7 @@ namespace gitc {
             if (path == "/") return "";
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
-                    if (!f->d_name || std::string(f->d_name) == "." || std::string(f->d_name) == "..")
+                    if (std::string(f->d_name) == "." || std::string(f->d_name) == "..")
                         continue;
                     if (f->d_type == DT_DIR) {
                         if (std::string(f->d_name) == ".gitc") {
@@ -73,24 +75,74 @@ namespace gitc {
             char buffer[PATH_MAX];
             getcwd(buffer, sizeof buffer);
 
-            return std::string(buffer);
+            return (std::string) buffer;
         }
 
         static std::string join_path(const std::string &base_path, const std::string &other_path) {
             char new_path[FILENAME_MAX];
 
             cwk_path_join(base_path.c_str(), other_path.c_str(), new_path, sizeof new_path);
-            return std::string(new_path);
+            return (std::string) new_path;
+        }
+
+        static bool check_for_changes(const std::string &file1, const std::string &file2) {
+            std::ifstream f1(file1);
+            std::ifstream f2(file2);
+
+            std::string line1, line2;
+
+            while (std::getline(f1, line1) && std::getline(f2, line2)) {
+                if (line1 != line2) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        static void copy_file_contents(const std::string &file1, const std::string &file2) {
+            std::ifstream f1(file1);
+            std::ofstream f2(file2);
+
+            std::string line;
+
+            while (std::getline(f1, line)) {
+                f2 << line << std::endl;
+            }
+        }
+
+        static void create_gitc_dir(const std::string &path) {
+            const std::string gitc_dir_path = join_path(path, ".gitc");
+            mkdir(gitc_dir_path.c_str(), 0777);
+        }
+
+        static std::string create_hash(const int len) {
+            static const char alphanum[] =
+                "0123456789"
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                "abcdefghijklmnopqrstuvwxyz";
+            std::string tmp_s;
+            tmp_s.reserve(len);
+
+            for (int i = 0; i < len; ++i) {
+                tmp_s += alphanum[get_random_number(0, sizeof(alphanum) - 1)];
+            }
+
+            return tmp_s;
         }
 
     private:
-
-
         static bool file_exists(const std::string &path) {
             std::ifstream f(path.c_str());
             return f.good();
         }
 
+        static unsigned long get_random_number(const int min, const int max) {
+            std::random_device dev;
+            std::mt19937 rng(dev());
+            std::uniform_int_distribution<std::mt19937::result_type> distribution(1,6);
+            return distribution(rng);
+        }
     };
 
 } // gitc

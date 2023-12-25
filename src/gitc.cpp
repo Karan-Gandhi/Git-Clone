@@ -7,7 +7,10 @@
 #include "gitc.h"
 #include "Files.h"
 
+
 int main(int argc, char *argv[]) {
+//    gitc::gitc().add(".");
+
 
     if (argc == 1) {
         // display help info
@@ -17,10 +20,16 @@ int main(int argc, char *argv[]) {
         if (command == "-h" || command == "--help") {
             // display help info
         }
+
         if (command == "init") {
+            gitc::gitc::init();
+            return 0;
+        }
 
-        } else if (command == "add") {
-
+        if (command == "add") {
+            for (int i = 2; i < argc; i++) {
+                gitc::gitc().add(argv[i]);
+            }
         } else if (command == "rm") {
 
         } else if (command == "commit") {

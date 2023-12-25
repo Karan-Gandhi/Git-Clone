@@ -4,11 +4,12 @@
 #include <string>
 #include <sstream>
 
-
 #ifndef GIT_CLONE_INDEX_H
 #define GIT_CLONE_INDEX_H
 
 namespace gitc {
+    const int HASH_LENGTH = 12;
+
     enum Index_updates {
         REMOVE, ADD
     };
@@ -21,10 +22,24 @@ namespace gitc {
     public:
         Index() {
             readFromFiles();
+
+            std::vector<std::string> files = Files::ls_recursive(Files::get_cwd());
+            for (std::string &file: files) {
+                if (!has_entry(file)) {
+                    Index_entry *new_entry = new Index_entry();
+
+                    new_entry->path = file;
+                    new_entry->stage_number = UNTRACKED;
+                    new_entry->hash = Files::create_hash(HASH_LENGTH); // now come up with a hash function
+
+                    entries.push_back(new_entry);
+                }
+            }
         }
 
         ~Index() {
             writeToFile();
+            std::cout << entries.size() << std::endl;
             for (Index_entry *entry: entries)
                 delete entry;
 
@@ -35,16 +50,50 @@ namespace gitc {
             if (updates == ADD) {
                 // add the file
 
+                for (Index_entry *entry: entries) {
+                    if (entry->path == path) {
+                        if (entry->stage_number == UNMODIFIED) {
+                            entry->stage_number = STAGED;
+
+                            const std::string object_path = Files::join_path(Files::root_path(Files::get_cwd()), ".gitc/objects/" + entry->hash);
+                            Files::copy_file_contents(path, object_path);
+                        } else {
+                            const std::string current_object_path = Files::join_path(Files::root_path(Files::get_cwd()), ".gitc/objects/" + entry->hash);
+
+                            if (Files::check_for_changes(path, current_object_path)) {
+                                entry->hash = Files::create_hash(HASH_LENGTH);
+                                Files::copy_file_contents(path, current_object_path);
+                            }
+                        }
+                    }
+                }
+
+                Index_entry *new_entry = new Index_entry();
+                new_entry->path = path;
+                new_entry->stage_number = STAGED;
+                new_entry->hash = Files::create_hash(HASH_LENGTH); // now come up with a hash function
+
+                entries.push_back(new_entry);
             } else if (updates == REMOVE) {
                 // make the file un
             }
+        }
+
+        bool has_entry(const std::string &path) {
+            for (Index_entry *entry: entries) {
+                if (entry->path == path) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
     private:
         struct Index_entry {
             std::string path;
             std::string hash;
-            Stage_number stage_number;
+            Stage_number stage_number = UNMODIFIED;
         };
 
         std::vector<Index_entry *> entries;
@@ -76,7 +125,7 @@ namespace gitc {
             iss >> size >> version;
 
             for (int i = 0; i < size; i++) {
-                auto *entry = new Index_entry();
+                Index_entry *entry = new Index_entry();
                 int stage_number;
 
                 std::getline(index_file, line);

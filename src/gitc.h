@@ -12,20 +12,27 @@ namespace gitc {
     public:
         gitc() {
             index = new Index();
+
+            if (!Files::in_repo()) {
+                std::cout << "fatal: not a gitc repository (or any of the parent directories): .gitc" << std::endl;
+                std::exit(1);
+            }
+
         }
 
         ~gitc() {
             delete index;
         }
 
-        void init() {
+        static void init() {
             if (Files::in_repo()) {
-                std::cout << "Already initialised git repository" << std::endl;
+                std::cout << "Already a gitc repository in " << Files::get_cwd() << "/.gitc" << std::endl;
                 return;
             }
 
-            // else just create the directory
-            // need the working tree
+            // create the .gitc directory
+            Files::create_gitc_dir(Files::get_cwd());
+            std::cout << "Initialized empty gitc repository in " << Files::get_cwd() << "/.gitc" << std::endl;
         }
 
         void add(const std::string &path) {
@@ -38,9 +45,10 @@ namespace gitc {
                 return;
             }
 
-            for (std::string &files : added_files) {
-                // update the files in the index
-//                index.
+            for (std::string &file : added_files) {
+                // update the file in the index
+                std::cout << file << std::endl;
+                index->update(file, ADD);
             }
         }
 
