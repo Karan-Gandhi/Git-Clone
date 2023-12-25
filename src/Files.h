@@ -5,7 +5,8 @@
 #include <vector>
 #include <iostream>
 #include <dirent.h>
-#include <filesystem>
+#include <fstream>
+#include <unistd.h>
 
 #include "../include/cwalk.h"
 
@@ -16,45 +17,47 @@ namespace gitc {
 
     class Files {
     public:
-        bool inRepo() {
+        static bool in_repo() {
             // check if a given file is in the repo
-            return !rootPath(".").empty();
-//            return true;
+            return !root_path(get_cwd()).empty();
         }
 
-        static std::vector<std::string> lsRecursive(const std::string &path) {
+        static std::vector<std::string> ls_recursive(const std::string &path) {
             // return a vector containing all the files in path
             std::vector<std::string> files;
+
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
-                    if (!f->d_name || f->d_name[0] == '.')
+                    if (!f->d_name || std::string(f->d_name) == "." || std::string(f->d_name) == ".." ||
+                        std::string(f->d_name) == ".gitc")
                         continue;
 
                     if (f->d_type == DT_DIR) {
-                        for (auto &file: lsRecursive(joinPath(path, f->d_name))) {
+                        for (auto &file: ls_recursive(join_path(path, f->d_name))) {
                             files.push_back(file);
                         }
                     }
 
                     if (f->d_type == DT_REG) {
-                        files.push_back(joinPath(path, f->d_name));
+                        files.push_back(join_path(path, f->d_name));
                     }
                 }
+            } else if (file_exists(path)) {
+                files.push_back(join_path(path, "."));
             }
 
             return files;
         }
 
-        std::string rootPath(const std::string &path) {
+        static std::string root_path(const std::string &path) {
             // return the location of the gitc directory wrt path
             // find the gitc directory
-            if (path == "/" || path == ".") return "";
+            if (path == "/") return "";
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
-                    if (!f->d_name || f->d_name[0] == '.')
+                    if (!f->d_name || std::string(f->d_name) == "." || std::string(f->d_name) == "..")
                         continue;
                     if (f->d_type == DT_DIR) {
-                        std::cout << f->d_name << std::endl;
                         if (std::string(f->d_name) == ".gitc") {
                             return path;
                         }
@@ -62,18 +65,32 @@ namespace gitc {
                 }
             }
 
-            std::cout << path << std::endl;
 
-            return rootPath(joinPath(path, "../"));
+            return root_path(join_path(path, "../"));
         }
 
-    private:
-        static std::string joinPath(const std::string &base_path, const std::string &other_path) {
+        static std::string get_cwd() {
+            char buffer[PATH_MAX];
+            getcwd(buffer, sizeof buffer);
+
+            return std::string(buffer);
+        }
+
+        static std::string join_path(const std::string &base_path, const std::string &other_path) {
             char new_path[FILENAME_MAX];
 
             cwk_path_join(base_path.c_str(), other_path.c_str(), new_path, sizeof new_path);
             return std::string(new_path);
         }
+
+    private:
+
+
+        static bool file_exists(const std::string &path) {
+            std::ifstream f(path.c_str());
+            return f.good();
+        }
+
     };
 
 } // gitc
