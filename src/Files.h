@@ -30,8 +30,8 @@ namespace gitc {
 
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
-                    if (std::string(f->d_name) == "." || std::string(f->d_name) == ".." ||
-                        std::string(f->d_name) == ".gitc")
+                    if ((std::string) f->d_name == "." || (std::string) f->d_name == ".." ||
+                        (std::string) f->d_name == ".gitc" || (std::string) f->d_name == ".git")
                         continue;
 
                     if (f->d_type == DT_DIR) {
@@ -52,8 +52,6 @@ namespace gitc {
         }
 
         static std::string root_path(const std::string &path = get_cwd()) {
-            // return the location of the gitc directory wrt path
-            // find the gitc directory
             if (path == "/") return "";
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
@@ -146,6 +144,11 @@ namespace gitc {
             char buffer[FILENAME_MAX];
             cwk_path_get_relative(base.c_str(), path.c_str(), buffer, sizeof(buffer));
             return (std::string) buffer;
+        }
+
+        static void create_file(const std::string &path) {
+            std::ofstream file(path);
+            file.close();
         }
 
     private:

@@ -55,8 +55,12 @@ namespace gitc {
                                                                                  ".gitc/objects/" + entry->hash);
 
                         if (Files::check_for_changes(path, current_object_path)) {
+                            entry->hash = Files::create_hash(HASH_LENGTH);
                             entry->stage_number = STAGED;
-                            Files::copy_file_contents(path, current_object_path);
+
+                            const std::string new_object_path = Files::join_path(Files::root_path(Files::get_cwd()),
+                                                                                 ".gitc/objects/" + entry->hash);
+                            Files::copy_file_contents(path, new_object_path);
                         }
                     }
                 }

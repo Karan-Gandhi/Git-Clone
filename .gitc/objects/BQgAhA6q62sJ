@@ -35,6 +35,8 @@ namespace gitc {
                     entries.push_back(new_entry);
                 }
             }
+
+            mkdir(".gitc/objects", 0777);
         }
 
         ~Index() {

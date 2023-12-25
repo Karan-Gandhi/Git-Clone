@@ -43,15 +43,25 @@ namespace gitc {
                 return;
             }
 
-            for (std::string &file : added_files) {
+            for (std::string &file: added_files) {
                 // update the file in the index
-                std::cout << file << std::endl;
                 index->update(file, ADD);
             }
         }
 
-        void rm() {
+        void rm(const std::string &path) {
+            std::vector<std::string> removed_files = Files::ls_recursive(path);
 
+            if (removed_files.empty()) {
+                std::cout << path << " did not match any files" << std::endl;
+                return;
+            }
+
+            for (std::string &file: removed_files) {
+                // update the file in the index
+                std::cout << file << std::endl;
+                index->update(file, REMOVE);
+            }
         }
 
         void commit() {

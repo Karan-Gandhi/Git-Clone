@@ -1,9 +1,0 @@
-0000000000000000000000000000000000000000 95f8f530e750afd2cda76945eb7d3e0a7de98892 Karan Gandhi <karangandhi.programming@gmail.com> 1703440261 +0530	commit (initial): Initial commit
-95f8f530e750afd2cda76945eb7d3e0a7de98892 0e728aba9918c44ea5de91406dbc610d949e339b Karan Gandhi <23110157@iitgn.ac.in> 1703440741 +0530	commit: change file structure
-0e728aba9918c44ea5de91406dbc610d949e339b 1d05bd40438921f74f45fcf257912b846037b808 Karan Gandhi <23110157@iitgn.ac.in> 1703441446 +0530	commit: changed makefile
-1d05bd40438921f74f45fcf257912b846037b808 9366466c26977cbde92b6af5bce6e8e5b81b8312 Karan Gandhi <23110157@iitgn.ac.in> 1703449097 +0530	commit: list the file name recursively
-9366466c26977cbde92b6af5bce6e8e5b81b8312 eda657efb425ec94e8d7ef2994bd19d84085516c Karan Gandhi <23110157@iitgn.ac.in> 1703452521 +0530	commit: doing file io
-eda657efb425ec94e8d7ef2994bd19d84085516c f9f4f393d28a632b69eba5d57f91ea87d51db790 Karan Gandhi <karangandhi09@hotmail.com> 1703504001 +0530	commit: started with the inde
-f9f4f393d28a632b69eba5d57f91ea87d51db790 ae0563e092b185ab95a704d24f8944d06817fc81 Karan Gandhi <karangandhi09@hotmail.com> 1703509474 +0530	commit: completed the index hashing and making the copies of the objects
-ae0563e092b185ab95a704d24f8944d06817fc81 ecc504a423033f1e52c60f3ac928a0f3584ea873 Karan Gandhi <karangandhi09@hotmail.com> 1703510275 +0530	commit: fixed the rng function
-ecc504a423033f1e52c60f3ac928a0f3584ea873 69e5c331708cadc1dbf7e504d22e4ee1528fc594 Karan Gandhi <karangandhi09@hotmail.com> 1703512622 +0530	commit: fixed one bug in index updation
