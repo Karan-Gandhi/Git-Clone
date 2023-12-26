@@ -8,7 +8,7 @@
 - [x] gitc checkout - checkout a commit
 - [x] gitc revert - revert to a commit
 - [x] gitc status - display the status of the repo
-- [ ] ~~support for branches~~
+- [ ] support for branches
 
 # Build
 I have currently tested it out on windows (MinGW) and linux (g++).
