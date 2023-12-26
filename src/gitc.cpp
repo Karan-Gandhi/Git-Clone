@@ -11,12 +11,13 @@
 int main(int argc, char *argv[]) {
     if (argc == 1) {
         // display help info
-        gitc::gitc();
+        gitc::gitc::help();
     } else {
         std::string command = argv[1];
 
         if (command == "-h" || command == "--help") {
             // display help info
+            gitc::gitc::help();
         }
 
         if (command == "init") {

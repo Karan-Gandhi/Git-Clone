@@ -75,7 +75,7 @@ namespace gitc {
                 std::cout << "Changes to be commited:" << std::endl;
                 std::cout << "   (use the rm command to unstage the files)" << std::endl;
 
-                for (auto entry : index->get_entries()) {
+                for (auto entry: index->get_entries()) {
                     if (entry->stage_number == STAGED) {
                         std::cout << "  \t" << entry->path << std::endl;
                     }
@@ -86,7 +86,7 @@ namespace gitc {
                 std::cout << "Changes not staged for commit:" << std::endl;
                 std::cout << "   (use \"add/rm <file>...\" to update what will be committed)" << std::endl;
 
-                for (auto entry : index->get_entries()) {
+                for (auto entry: index->get_entries()) {
                     if (entry->stage_number == UNTRACKED) {
                         std::cout << "  \t" << entry->path << std::endl;
                     }
@@ -127,7 +127,16 @@ namespace gitc {
         }
 
         static void help() {
+            std::cout << "usage: gitc [-h | --help]" << std::endl;
+            std::cout << "These are common gitc commands used in various situations: " << std::endl << std::endl;
 
+            std::cout << "start a working area" << std::endl;
+            std::cout << "   init              Create an empty gitc repository or reinitialize an existing one"
+                      << std::endl << std::endl;
+
+            std::cout
+                    << "work on the current change\n   add               Add file contents to the index\n   rm                Remove files from the working tree and from the index\n\nexamine the history and state\n   log               Show commit logs\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   commit            Record changes to the repository\n\n\n'gitc --help' and 'gitc -h' list available subcommands"
+                    << std::endl;
         }
 
     private:
