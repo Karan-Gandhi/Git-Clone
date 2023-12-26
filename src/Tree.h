@@ -14,8 +14,15 @@ namespace gitc {
 
     class Tree {
     public:
+        struct Tree_entry {
+            std::string path;
+            std::string hash;
+            std::string type;
+        };
+
+
         Tree(std::string _hash) : hash(_hash) {
-//            read_from_file();
+            read_from_file();
         }
 
         ~Tree() {
@@ -30,20 +37,22 @@ namespace gitc {
 
             entries.push_back(new_entry);
         }
+
+        std::vector<Tree_entry *> get_entries() {
+            return entries;
+        }
+
     private:
         std::string hash;
-
-        struct Tree_entry {
-            std::string path;
-            std::string hash;
-            std::string type;
-        };
-
         std::vector<Tree_entry *> entries;
 
         void read_from_file() {
             std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + hash);
             std::ifstream file(file_path);
+
+            if (!file.good()) {
+                return;
+            }
 
             std::string line;
             while (std::getline(file, line)) {

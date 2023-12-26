@@ -20,7 +20,6 @@ namespace gitc {
             read_from_file();
         }
 
-        Commit() {}
 
         ~Commit() {
             write_to_file();
@@ -121,12 +120,17 @@ namespace gitc {
             std::cout << "\t" << commit_message << std::endl << std::endl;
         }
 
+        void update_working_directory() {
+        }
+
     private:
         std::string commit_hash;
         std::string tree_hash;
         std::string parent_hash;
         std::string commit_message;
         unsigned long timestamp;
+
+        Commit() {}
 
         void read_from_file() {
             std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash);

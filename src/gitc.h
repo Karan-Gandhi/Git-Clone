@@ -109,6 +109,10 @@ namespace gitc {
 
         }
 
+        void revert(const std::string &commit_hash) {
+
+        }
+
         void log() {
             if (head->get_last_commit_hash().empty()) {
                 std::cout << "No commits to display" << std::endl;
