@@ -57,6 +57,67 @@ namespace gitc {
             return new_commit;
         }
 
+        void print_commit(bool is_head) {
+            std::cout << "commit: " << commit_hash << (is_head ? " (HEAD -> master)" : "") << std::endl;
+            std::cout << "time: " << timestamp << std::endl << std::endl;
+            std::cout << "\t" << commit_message << std::endl << std::endl;
+        }
+
+        void update_working_directory() {
+            // update the current working directory to the state of the commit
+            update_working_directory_recursively(tree_hash, "");
+        }
+
+        void delete_commit() {
+            // delete the commit from the .gitc/objects directory
+            Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash));
+
+            recursively_delete_tree(tree_hash);
+        }
+
+    private:
+        std::string commit_hash;
+        std::string tree_hash;
+        std::string parent_hash;
+        std::string commit_message;
+        unsigned long timestamp;
+
+        Commit() {}
+
+        void read_from_file() {
+            std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash);
+            std::ifstream file(file_path);
+
+            std::string line;
+            std::getline(file, line);
+            std::istringstream iss(line);
+
+            std::string type;
+            iss >> type >> tree_hash;
+
+            std::getline(file, line);
+            iss = std::istringstream(line);
+            iss >> type >> parent_hash;
+
+            std::getline(file, line);
+            iss = std::istringstream(line);
+            iss >> type >> timestamp;
+
+            std::getline(file, commit_message);
+
+            file.close();
+        }
+
+        void write_to_file() {
+            std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash);
+            std::ofstream file(file_path);
+
+            file << "tree " << tree_hash << std::endl;
+            file << "parent " << parent_hash << std::endl;
+            file << "time " << timestamp << std::endl;
+            file << commit_message << std::endl;
+        }
+
         static int create_tree_recursively(std::vector<Index_entry *> entries, const std::string &current_tree_hash) {
             std::vector<std::string> directories;
             std::vector<std::string> files;
@@ -114,16 +175,6 @@ namespace gitc {
             return files_changed;
         }
 
-        void print_commit(bool is_head) {
-            std::cout << "commit: " << commit_hash << (is_head ? " (HEAD -> master)" : "") << std::endl;
-            std::cout << "time: " << timestamp << std::endl << std::endl;
-            std::cout << "\t" << commit_message << std::endl << std::endl;
-        }
-
-        void update_working_directory() {
-            // update the current working directory to the state of the commit
-            update_working_directory_recursively(tree_hash, "");
-        }
 
         static void update_working_directory_recursively(const std::string &current_tree_hash,
                                                          const std::string &path) {
@@ -140,50 +191,21 @@ namespace gitc {
                                               Files::join_path(Files::root_path(), path + "/" + entry->path));
                 }
             }
-
         }
 
-    private:
-        std::string commit_hash;
-        std::string tree_hash;
-        std::string parent_hash;
-        std::string commit_message;
-        unsigned long timestamp;
+        static void recursively_delete_tree(const std::string &current_tree_hash) {
+            Tree *current_tree = new Tree(current_tree_hash);
+            std::vector<Tree::Tree_entry *> entries = current_tree->get_entries();
 
-        Commit() {}
+            for (auto entry: entries) {
+                if (entry->type == "tree") {
+                    recursively_delete_tree(entry->hash);
+                } else {
+                    Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + entry->hash));
+                }
+            }
 
-        void read_from_file() {
-            std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash);
-            std::ifstream file(file_path);
-
-            std::string line;
-            std::getline(file, line);
-            std::istringstream iss(line);
-
-            std::string type;
-            iss >> type >> tree_hash;
-
-            std::getline(file, line);
-            iss = std::istringstream(line);
-            iss >> type >> parent_hash;
-
-            std::getline(file, line);
-            iss = std::istringstream(line);
-            iss >> type >> timestamp;
-
-            std::getline(file, commit_message);
-
-            file.close();
-        }
-
-        void write_to_file() {
-            std::string file_path = Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash);
-            std::ofstream file(file_path);
-
-            file << "tree " << tree_hash << std::endl;
-            file << "parent " << parent_hash << std::endl;
-            file << "time " << timestamp << std::endl;
-            file << commit_message << std::endl;
+            Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + current_tree_hash));
         }
     };
 

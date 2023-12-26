@@ -60,6 +60,13 @@ int main(int argc, char *argv[]) {
             }
 
             gitc::gitc().checkout(argv[2]);
+        } else if(command == "revert") {
+            if (argc != 3) {
+                std::cout << "fatal: Please provide a commit hash" << std::endl;
+                return 0;
+            }
+
+            gitc::gitc().revert(argv[2]);
         } else if (command == "status") {
             gitc::gitc().status();
         } else {
