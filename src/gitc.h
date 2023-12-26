@@ -162,9 +162,20 @@ namespace gitc {
             std::cout << "   init              Create an empty gitc repository or reinitialize an existing one"
                       << std::endl << std::endl;
 
-            std::cout
-                    << "work on the current change\n   add               Add file contents to the index\n   rm                Remove files from the working tree and from the index\n\nexamine the history and state\n   log               Show commit logs\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   commit            Record changes to the repository\n\n\n'gitc --help' and 'gitc -h' list available subcommands"
-                    << std::endl;
+            std::cout << "work on the current change\n"
+                      << "   add               Add file contents to the index\n"
+                      << "   rm                Remove files from the working tree and from the index\n\n"
+                      << "examine the history and state\n"
+                      << "   log               Show commit logs\n"
+                      << "   status            Show the working tree status\n"
+                      << "   checkout          Checkout a commit\n\n"
+                      << "grow, mark and tweak your common history\n"
+                      << "   commit            Record changes to the repository\n"
+                      << "   revert            Revert a commit\n\n\n"
+                      << "'gitc --help' and 'gitc -h' list available subcommands"
+                      << std::endl << std::endl;
+
+            std::cout << "Created by Karan Gandhi" << std::endl;
         }
 
     private:
