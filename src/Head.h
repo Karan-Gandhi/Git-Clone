@@ -20,6 +20,10 @@ namespace gitc {
             write_to_file();
         }
 
+        void update_head_ref(const std::string &ref) {
+            head_ref = ref;
+        }
+
         void update_last_commit_hash(const std::string &hash) {
             last_commit_hash = hash;
         }

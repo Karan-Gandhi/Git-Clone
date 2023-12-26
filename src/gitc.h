@@ -105,7 +105,7 @@ namespace gitc {
             delete new_commit;
         }
 
-        void checkout() {
+        void checkout(const std::string &commit_hash) {
 
         }
 

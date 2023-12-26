@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         } else if (command == "status") {
             gitc::gitc().status();
         } else {
-            // no command matches
+            std::cout << "gitc: '" << command << "' is not a gitc command. See 'gitc --help'." << std::endl;
         }
     }
 
