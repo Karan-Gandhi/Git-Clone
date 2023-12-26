@@ -106,7 +106,14 @@ namespace gitc {
         }
 
         void checkout(const std::string &commit_hash) {
+            if (!Head::commit_exists(commit_hash)) {
+                std::cout << "fatal: commit " << commit_hash << " does not exist" << std::endl;
+                return;
+            }
 
+            Commit *commit = new Commit(commit_hash);
+            commit->update_working_directory();
+            delete commit;
         }
 
         void revert(const std::string &commit_hash) {

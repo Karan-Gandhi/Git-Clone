@@ -54,7 +54,12 @@ int main(int argc, char *argv[]) {
         } else if (command == "log") {
             gitc::gitc().log();
         } else if (command == "checkout") {
+            if (argc != 3) {
+                std::cout << "fatal: Please provide a commit hash" << std::endl;
+                return 0;
+            }
 
+            gitc::gitc().checkout(argv[2]);
         } else if (command == "status") {
             gitc::gitc().status();
         } else {

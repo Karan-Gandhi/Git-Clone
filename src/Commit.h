@@ -47,7 +47,7 @@ namespace gitc {
             std::cout << "[master] " << new_commit->commit_hash << ": " << message << std::endl;
             std::cout << files_changed << " files changed" << std::endl;
 
-            for (auto entry : index.get_entries()) {
+            for (auto entry: index.get_entries()) {
                 if (entry->stage_number == STAGED) {
                     std::cout << "  " << entry->path << std::endl;
                 }
@@ -121,6 +121,26 @@ namespace gitc {
         }
 
         void update_working_directory() {
+            // update the current working directory to the state of the commit
+            update_working_directory_recursively(tree_hash, "");
+        }
+
+        static void update_working_directory_recursively(const std::string &current_tree_hash,
+                                                         const std::string &path) {
+            Tree *current_tree = new Tree(current_tree_hash);
+            std::vector<Tree::Tree_entry *> entries = current_tree->get_entries();
+
+            for (auto entry: entries) {
+                if (entry->type == "tree") {
+                    Files::make_dir(Files::join_path(Files::root_path(), path + "/" + entry->path).c_str());
+                    update_working_directory_recursively(entry->hash, path + "/" + entry->path);
+                } else {
+                    // copy the file from the .gitc/objects directory to the current working directory
+                    Files::copy_file_contents(Files::join_path(Files::root_path(), ".gitc/objects/" + entry->hash),
+                                              Files::join_path(Files::root_path(), path + "/" + entry->path));
+                }
+            }
+
         }
 
     private:

@@ -61,6 +61,11 @@ namespace gitc {
 
                 iss >> new_entry->type >> new_entry->hash;
                 std::getline(iss, new_entry->path);
+                new_entry->path.erase(new_entry->path.begin(),
+                                      std::find_if(new_entry->path.begin(), new_entry->path.end(),
+                                                   [](unsigned char ch) {
+                                                       return !std::isspace(ch);
+                                                   }));
                 entries.push_back(new_entry);
             }
 
