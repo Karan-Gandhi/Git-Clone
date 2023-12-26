@@ -29,7 +29,7 @@ namespace gitc {
             head_file << "refs/heads/master";
             head_file.close();
 
-            mkdir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str(), 0777);
+            Files::make_dir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str());
 
             std::ofstream master(Files::join_path(Files::root_path(), ".gitc/refs/heads/master"));
             master << "";
@@ -53,8 +53,8 @@ namespace gitc {
             head_file << head_ref;
             head_file.close();
 
-            mkdir(Files::join_path(Files::root_path(), ".gitc/refs").c_str(), 0777);
-            mkdir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str(), 0777);
+            Files::make_dir(Files::join_path(Files::root_path(), ".gitc/refs").c_str());
+            Files::make_dir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str());
 
             std::ofstream master(Files::join_path(Files::root_path(), ".gitc/refs/heads/master"));
             master << last_commit_hash;

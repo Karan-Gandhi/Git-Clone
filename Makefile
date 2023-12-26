@@ -1,5 +1,5 @@
 CC				= g++
-CC_FLAGS 		= -g -Wall -std=c++17
+CC_FLAGS 		= -g -Wall -std=c++14
 BUILD_DIR		= ./bin
 SRC_DIR			= ./src
 LIB_DIR			= ./lib

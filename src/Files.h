@@ -15,6 +15,10 @@
 #ifndef GIT_CLONE_FILES_H
 #define GIT_CLONE_FILES_H
 
+#ifndef __linux__
+#define PATH_MAX 260
+#endif
+
 namespace gitc {
     const int HASH_LENGTH = 12;
 
@@ -123,11 +127,11 @@ namespace gitc {
 
         static void create_gitc_dir(const std::string &path) {
             const std::string gitc_dir_path = join_path(path, ".gitc");
-            mkdir(gitc_dir_path.c_str(), 0777);
+            make_dir(gitc_dir_path.c_str());
         }
 
         static std::string create_hash(const int len) {
-            std::string alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            std::string alphanum = "0123456789abcdefghijklmnopqrstuvwxyz";
             std::string tmp_s(len, ' ');
 
             for (int i = 0; i < len; ++i) {
@@ -155,6 +159,14 @@ namespace gitc {
         static bool file_exists(const std::string &path) {
             std::ifstream f(path.c_str());
             return f.good();
+        }
+
+        static void make_dir(const std::string &path) {
+#ifdef __linux__
+            mkdir(path.c_str(), 0777);
+#else
+            _mkdir(path.c_str());
+#endif
         }
 
     private:

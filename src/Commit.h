@@ -4,6 +4,7 @@
 
 #include <string>
 #include <algorithm>
+#include <time.h>
 #include "Index.h"
 #include "Files.h"
 #include "Tree.h"

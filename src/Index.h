@@ -44,7 +44,7 @@ namespace gitc {
                 }
             }
 
-            mkdir(".gitc/objects", 0777);
+            Files::make_dir(".gitc/objects");
         }
 
         ~Index() {

@@ -1,21 +1,23 @@
-20 gitc_version_1.0
-.idea/.gitignore 2 JkvOvSp7hJl1
-.idea/Git Clone.iml 2 THomfEeT4lHu
-.idea/modules.xml 2 zOx2Xa2mrhNs
-.idea/vcs.xml 2 pJVFzOsvZCde
-.idea/workspace.xml 2 IZMscyGMr9cb
-bin/gitc 2 TvmPbSlvedFe
-cli_structure 1 9fXnl1qeLTcE
-include/cwalk.h 2 wwpg4u8hmkcQ
-lib/cwalk.cpp 2 2qgDDESIL52A
-Makefile 2 QJiC4TQLRJ34
-README.md 2 EkGPuCufTQwf
-run.sh 2 ouhWVtyEl6LD
-src/Commit.h 2 YgcD83kVVxnt
-src/Files.h 2 7KxoJWEk2Xpk
-src/gitc.cpp 2 obc4Ro2il0rN
-src/gitc.h 2 EBA8mk3E4IO2
-src/Head.h 2 ilX6BZWZ8Gc1
-src/Index.h 2 vbaRs830GE88
-src/main.cpp 2 VcxtVlmn1BW3
-src/Tree.h 2 jt5ClxivIxVv
+22 gitc_version_1.0
+.idea/.gitignore 2 aitxzl15252i
+.idea/Git Clone.iml 2 5l7b5s22drgt
+.idea/modules.xml 2 pwk5hca7j47f
+.idea/vcs.xml 2 u60vw4auabhf
+.idea/workspace.xml 2 m47c2nbd5hbe
+bin/gitc 2 7ca5jq2fxxhp
+bin/gitc.exe 2 df73b6s6t48m
+cli_structure 0 w2a9n4xwricf
+gitc 2 w2z06we815ym
+include/cwalk.h 2 ag5coaujrc06
+lib/cwalk.cpp 2 nmovdg6xjd5u
+Makefile 2 tqdatdxfqpte
+README.md 2 479ygshscbzq
+run.sh 2 lp2pkup1lf6n
+src/Commit.h 2 khdyck8dp512
+src/Files.h 2 k60018vfjmul
+src/gitc.cpp 2 tnueexy2lzmx
+src/gitc.h 2 ipwnklzmqou4
+src/Head.h 2 9nbr8zu9i7fl
+src/Index.h 2 9agkn8kpgxls
+src/main.cpp 2 y6su0b3zf54m
+src/Tree.h 2 mx57c9t6txqf
