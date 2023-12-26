@@ -50,7 +50,8 @@ namespace gitc {
                 std::istringstream iss(line);
                 Tree_entry *new_entry = new Tree_entry();
 
-                iss >> new_entry->type >> new_entry->hash >> new_entry->path;
+                iss >> new_entry->type >> new_entry->hash;
+                std::getline(iss, new_entry->path);
                 entries.push_back(new_entry);
             }
 

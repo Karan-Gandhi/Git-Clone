@@ -3,6 +3,7 @@
 //
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 #ifndef GIT_CLONE_INDEX_H
 #define GIT_CLONE_INDEX_H
@@ -20,7 +21,7 @@ namespace gitc {
     struct Index_entry {
         std::string path;
         std::string hash;
-        Stage_number stage_number = UNMODIFIED;
+        Stage_number stage_number = UNTRACKED;
     };
 
 
@@ -38,6 +39,7 @@ namespace gitc {
                     new_entry->stage_number = UNTRACKED;
                     new_entry->hash = Files::create_hash(HASH_LENGTH); // now come up with a hash function
 
+//                    std::cout << new_entry->path << (int) new_entry->stage_number << new_entry->hash << std::endl;
                     entries.push_back(new_entry);
                 }
             }
@@ -83,13 +85,23 @@ namespace gitc {
         }
 
         bool has_entry(const std::string &path) {
+//            std::cout << "Has entry: " << path << std::endl;
             for (Index_entry *entry: entries) {
                 if (entry->path == path) {
                     return true;
                 }
             }
 
+//            std::cout << "false" << std::endl;
             return false;
+        }
+
+        void unsatge_entries() {
+            for (auto entry : entries) {
+                if (entry->stage_number == STAGED) {
+                    entry->stage_number = UNMODIFIED;
+                }
+            }
         }
 
         std::vector<Index_entry *> get_entries() {
@@ -110,6 +122,7 @@ namespace gitc {
             index_file << entries.size() << " gitc_version_1.0" << std::endl;
             for (Index_entry *entry: entries) {
                 index_file << entry->path << " " << entry->stage_number << " " << entry->hash << std::endl;
+//                std::cout << entry->path << " " << entry->stage_number << " " << entry->hash << std::endl;
             }
 
             index_file.close();
@@ -133,8 +146,15 @@ namespace gitc {
                 int stage_number;
 
                 std::getline(index_file, line);
+                std::reverse(line.begin(), line.end());
                 std::istringstream current_iss(line);
-                current_iss >> entry->path >> stage_number >> entry->hash;
+                current_iss >> entry->hash >> stage_number;
+                std::getline(current_iss, entry->path);
+
+                std::reverse(entry->hash.begin(), entry->hash.end());
+                std::reverse(entry->path.begin(), entry->path.end());
+
+                while(entry->path[(int) entry->path.size() - 1] == ' ') entry->path.pop_back();
 
                 entry->stage_number = static_cast<Stage_number>(stage_number);
                 entries.push_back(entry);

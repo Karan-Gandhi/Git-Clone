@@ -49,6 +49,7 @@ namespace gitc {
             head_file << head_ref;
             head_file.close();
 
+            mkdir(Files::join_path(Files::root_path(), ".gitc/refs").c_str(), 0777);
             mkdir(Files::join_path(Files::root_path(), ".gitc/refs/heads").c_str(), 0777);
 
             std::ofstream master(Files::join_path(Files::root_path(), ".gitc/refs/heads/master"));

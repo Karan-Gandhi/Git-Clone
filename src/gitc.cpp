@@ -11,6 +11,7 @@
 int main(int argc, char *argv[]) {
     if (argc == 1) {
         // display help info
+        gitc::gitc();
     } else {
         std::string command = argv[1];
 
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
             }
 
         } else if (command == "commit") {
-
+            gitc::gitc().commit("This is a test commit");
         } else if (command == "checkout") {
 
         } else {

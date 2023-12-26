@@ -40,6 +40,8 @@ namespace gitc {
 
             create_tree_recursively(index.get_entries(), new_commit->tree_hash);
 
+            index.unsatge_entries();
+
             return new_commit;
         }
 
