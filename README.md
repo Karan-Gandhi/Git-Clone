@@ -4,8 +4,8 @@
 - [x] gitc add - add files
 - [x] gitc commit - commit added files
 - [x] gitc rm - remove added files
-- [ ] gitc log - display all the commits
+- [x] gitc log - display all the commits
 - [ ] gitc checkout - checkout a commit
-- [ ] gitc status
+- [x] gitc status
 - [ ] ~~support for branches~~
 - 

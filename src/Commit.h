@@ -44,7 +44,6 @@ namespace gitc {
 
             int files_changed = create_tree_recursively(index.get_entries(), new_commit->tree_hash);
 
-
             std::cout << "[master] " << new_commit->commit_hash << ": " << message << std::endl;
             std::cout << files_changed << " files changed" << std::endl;
 

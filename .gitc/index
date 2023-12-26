@@ -1,21 +1,21 @@
 20 gitc_version_1.0
-.idea/.gitignore 2 28L2x5vlGQoC
-.idea/Git Clone.iml 2 KAs1u4L2OB7q
-.idea/modules.xml 2 8gqDrS4Ifm80
-.idea/vcs.xml 2 tTv6Qy73cpZI
-.idea/workspace.xml 2 Gbm3t3jexZE0
-bin/gitc 2 g9xxD6fCklMl
-cli_structure 0 dM2I7GMnbYAz
-include/cwalk.h 2 AKfvhsOloiMh
-lib/cwalk.cpp 2 CwBTMtRaf3Vn
-Makefile 2 Hyf5GUhDhhkG
-README.md 2 M5EaGavCjM1O
-run.sh 2 AcHpOQsm0XwU
-src/Commit.h 2 YmQJKutFEqah
-src/Files.h 2 lR0HZmn6CiwS
-src/gitc.cpp 2 9yG92gdrHouM
-src/gitc.h 2 g4XfCenb6Anj
-src/Head.h 2 mrLCOFwt08m8
-src/Index.h 2 VAPoZ8qeJPeG
-src/main.cpp 2 yGn4kYzIHgJA
-src/Tree.h 2 AM1HTgODKjYe
+.idea/.gitignore 2 JkvOvSp7hJl1
+.idea/Git Clone.iml 2 THomfEeT4lHu
+.idea/modules.xml 2 zOx2Xa2mrhNs
+.idea/vcs.xml 2 pJVFzOsvZCde
+.idea/workspace.xml 2 IZMscyGMr9cb
+bin/gitc 2 TvmPbSlvedFe
+cli_structure 1 9fXnl1qeLTcE
+include/cwalk.h 2 wwpg4u8hmkcQ
+lib/cwalk.cpp 2 2qgDDESIL52A
+Makefile 2 QJiC4TQLRJ34
+README.md 2 EkGPuCufTQwf
+run.sh 2 ouhWVtyEl6LD
+src/Commit.h 2 YgcD83kVVxnt
+src/Files.h 2 7KxoJWEk2Xpk
+src/gitc.cpp 2 obc4Ro2il0rN
+src/gitc.h 2 EBA8mk3E4IO2
+src/Head.h 2 ilX6BZWZ8Gc1
+src/Index.h 2 vbaRs830GE88
+src/main.cpp 2 VcxtVlmn1BW3
+src/Tree.h 2 jt5ClxivIxVv

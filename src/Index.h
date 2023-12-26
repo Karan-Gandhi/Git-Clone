@@ -97,6 +97,7 @@ namespace gitc {
         }
 
         void unsatge_entries() {
+            staged = false;
             for (auto entry : entries) {
                 if (entry->stage_number == STAGED) {
                     entry->stage_number = UNMODIFIED;
@@ -108,10 +109,21 @@ namespace gitc {
             return entries;
         }
 
-//
+        bool is_staged() {
+            return staged;
+        }
+
+        bool has_untracked_files() {
+            bool res = false;
+
+            for (auto entry : entries)
+                res |= entry->stage_number == UNTRACKED;
+
+            return res;
+        }
 
     private:
-
+        bool staged;
         std::vector<Index_entry *> entries;
 
         void writeToFile() {
@@ -157,6 +169,8 @@ namespace gitc {
                 while(entry->path[(int) entry->path.size() - 1] == ' ') entry->path.pop_back();
 
                 entry->stage_number = static_cast<Stage_number>(stage_number);
+
+                if (stage_number == STAGED) staged = true;
                 entries.push_back(entry);
             }
         }

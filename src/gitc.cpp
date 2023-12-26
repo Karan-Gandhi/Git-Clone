@@ -54,6 +54,8 @@ int main(int argc, char *argv[]) {
             gitc::gitc().log();
         } else if (command == "checkout") {
 
+        } else if (command == "status") {
+            gitc::gitc().status();
         } else {
             // no command matches
         }

@@ -69,10 +69,36 @@ namespace gitc {
         }
 
         void status() {
+            std::cout << "On branch master" << std::endl;
 
+            if (index->is_staged()) {
+                std::cout << "Changes to be commited:" << std::endl;
+                std::cout << "   (use the rm command to unstage the files)" << std::endl;
+
+                for (auto entry : index->get_entries()) {
+                    if (entry->stage_number == STAGED) {
+                        std::cout << "  \t" << entry->path << std::endl;
+                    }
+                }
+            }
+
+            if (index->has_untracked_files()) {
+                std::cout << "Changes not staged for commit:" << std::endl;
+                std::cout << "   (use \"add/rm <file>...\" to update what will be committed)" << std::endl;
+
+                for (auto entry : index->get_entries()) {
+                    if (entry->stage_number == UNTRACKED) {
+                        std::cout << "  \t" << entry->path << std::endl;
+                    }
+                }
+            }
         }
 
         void commit(const std::string &message) {
+            if (!index->is_staged()) {
+                std::cout << "Please add files first to commit" << std::endl;
+                return;
+            }
             // make a commit object, object tree (which is the snapshot of index), and update the head
             Commit *new_commit = Commit::create_commit_from_index(*index, head->get_last_commit_hash(), message);
             head->update_last_commit_hash(new_commit->get_commit_hash());
