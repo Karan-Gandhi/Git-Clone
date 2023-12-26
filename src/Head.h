@@ -40,6 +40,10 @@ namespace gitc {
             return last_commit_hash;
         }
 
+        static bool commit_exists(const std::string &hash) {
+            return Files::file_exists(Files::join_path(Files::root_path(), ".gitc/objects/" + hash));
+        }
+
     private:
         std::string head_ref;
         std::string last_commit_hash;

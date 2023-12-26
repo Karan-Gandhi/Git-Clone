@@ -29,6 +29,10 @@ namespace gitc {
             return commit_hash;
         }
 
+        std::string get_parent_commit_hash() {
+            return parent_hash;
+        }
+
         static Commit *create_commit_from_index(Index &index, std::string previous_commit_hash, std::string message) {
             Commit *new_commit = new Commit();
 
@@ -109,6 +113,12 @@ namespace gitc {
             delete new_tree;
 
             return files_changed;
+        }
+
+        void print_commit(bool is_head) {
+            std::cout << "commit: " << commit_hash << (is_head ? " (HEAD -> master)" : "") << std::endl;
+            std::cout << "time: " << timestamp << std::endl << std::endl;
+            std::cout << "\t" << commit_message << std::endl << std::endl;
         }
 
     private:

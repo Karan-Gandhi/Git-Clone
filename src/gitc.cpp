@@ -44,7 +44,14 @@ int main(int argc, char *argv[]) {
             }
 
         } else if (command == "commit") {
-            gitc::gitc().commit("This is a test commit");
+            if (argc != 4 || (std::string) argv[2] != "-m") {
+                std::cout << "fatal: Please provide a commit message using -m flag" << std::endl;
+                return 0;
+            }
+
+            gitc::gitc().commit(argv[3]);
+        } else if (command == "log") {
+            gitc::gitc().log();
         } else if (command == "checkout") {
 
         } else {

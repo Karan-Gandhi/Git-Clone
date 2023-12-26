@@ -152,11 +152,13 @@ namespace gitc {
             file.close();
         }
 
-    private:
         static bool file_exists(const std::string &path) {
             std::ifstream f(path.c_str());
             return f.good();
         }
+
+    private:
+
 
         static unsigned long get_random_number(const int min, const int max) {
             std::random_device dev;

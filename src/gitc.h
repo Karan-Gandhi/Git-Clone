@@ -84,7 +84,20 @@ namespace gitc {
         }
 
         void log() {
+            if (head->get_last_commit_hash().empty()) {
+                std::cout << "No commits to display" << std::endl;
+                return;
+            }
 
+            Commit *current_commit = new Commit(head->get_last_commit_hash());
+            current_commit->print_commit(true);
+
+            while (!current_commit->get_parent_commit_hash().empty()) {
+                std::string next_commit_hash = current_commit->get_parent_commit_hash();
+                delete current_commit;
+                current_commit = new Commit(next_commit_hash);
+                current_commit->print_commit(false);
+            }
         }
 
         static void help() {
