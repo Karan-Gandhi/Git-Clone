@@ -20,7 +20,7 @@
 #endif
 
 namespace gitc {
-    const int HASH_LENGTH = 12;
+    const int HASH_LENGTH = 8;
 
     class Files {
     public:
