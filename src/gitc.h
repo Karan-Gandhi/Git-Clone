@@ -111,6 +111,19 @@ namespace gitc {
                 return;
             }
 
+            if (index->has_untracked_files()) {
+                std::cout << "fatal: Your local changes to the following files would be overwritten by checkout:"
+                          << std::endl;
+
+                for (auto &entry : index->get_entries()) {
+                    if (entry->stage_number == UNTRACKED)
+                        std::cout << "   " << entry->path << std::endl;
+                }
+
+                std::cout << "Aborting" << std::endl;
+                return;
+            }
+
             Commit *commit = new Commit(commit_hash);
             commit->update_working_directory();
             delete commit;

@@ -65,6 +65,7 @@ namespace gitc {
 
         void update_working_directory() {
             // update the current working directory to the state of the commit
+            Files::clear_working_dir_recursively();
             update_working_directory_recursively(tree_hash, "");
         }
 

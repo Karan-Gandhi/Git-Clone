@@ -169,6 +169,29 @@ namespace gitc {
 #endif
         }
 
+        static void remove_dir(const std::string &path) {
+            rmdir(path.c_str());
+        }
+
+        static void clear_working_dir_recursively(const std::string& path = root_path()) {
+            if (auto dir = opendir(path.c_str())) {
+                while (auto f = readdir(dir)) {
+                    if ((std::string) f->d_name == "." || (std::string) f->d_name == ".." ||
+                        (std::string) f->d_name == ".gitc" || (std::string) f->d_name == ".git")
+                        continue;
+
+                    if (f->d_type == DT_DIR) {
+                        clear_working_dir_recursively(join_path(path, f->d_name));
+                        remove_dir(join_path(path, f->d_name));
+                    }
+
+                    if (f->d_type == DT_REG) {
+                        delete_file(join_path(path, f->d_name));
+                    }
+                }
+            }
+        }
+
     private:
 
 
