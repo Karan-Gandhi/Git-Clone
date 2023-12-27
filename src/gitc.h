@@ -124,17 +124,17 @@ namespace gitc {
 
             Commit *commit = new Commit(commit_hash);
             commit->update_working_directory();
+            delete commit;
 
             // delete the current commit and update the head
             while (head->get_last_commit_hash() != commit_hash) {
-                std::cout << commit_hash << std::endl;
                 std::string last_commit_hash = head->get_last_commit_hash();
-                delete commit;
                 commit = new Commit(last_commit_hash);
                 commit->delete_commit();
                 head->update_last_commit_hash(commit->get_parent_commit_hash());
+                delete commit;
+                Files::delete_file(Files::join_path(Files::relative_root_path(), ".gitc/objects/" + last_commit_hash));
             }
-            delete commit;
         }
 
         void log() {

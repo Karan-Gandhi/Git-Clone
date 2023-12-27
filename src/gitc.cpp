@@ -6,12 +6,13 @@
 
 #include "gitc.h"
 #include "Files.h"
-
+#include "Files.h"
 
 int main(int argc, char *argv[]) {
     if (argc == 1) {
         // display help info
         gitc::gitc::help();
+        gitc::Files::delete_file(".gitc/objects/9koyr7mhitbp");
     } else {
         std::string command = argv[1];
 

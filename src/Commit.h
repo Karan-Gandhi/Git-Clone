@@ -70,8 +70,6 @@ namespace gitc {
 
         void delete_commit() {
             // delete the commit from the .gitc/objects directory
-            Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + commit_hash));
-
             recursively_delete_tree(tree_hash);
         }
 
