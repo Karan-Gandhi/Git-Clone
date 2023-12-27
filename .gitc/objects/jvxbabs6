@@ -171,7 +171,7 @@ namespace gitc {
                 entry->stage_number = static_cast<Stage_number>(stage_number);
 
                 if (stage_number == STAGED) staged = true;
-                if (Files::file_exists(entry->path)) entries.push_back(entry);
+                entries.push_back(entry);
             }
         }
     };

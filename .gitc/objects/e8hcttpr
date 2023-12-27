@@ -104,7 +104,7 @@ namespace gitc {
 
             std::string line1, line2;
 
-            while (std::getline(f1, line1) && std::getline(f2, line2)) {
+            while (std::getline(f1, line1) || std::getline(f2, line2)) {
                 if (line1 != line2) {
                     return true;
                 }

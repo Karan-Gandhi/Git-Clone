@@ -96,13 +96,15 @@ namespace gitc {
             std::ifstream f1(file1);
             std::ifstream f2(file2);
 
+//            std::cout << file1 << ' ' << file2 << ' ' << f1.peek() << ' ' << f2.peek() << std::endl;
+
             if (!f1.good() || !f2.good()) {
                 return true;
             }
 
             std::string line1, line2;
 
-            while (std::getline(f1, line1) && std::getline(f2, line2)) {
+            while (std::getline(f1, line1) || std::getline(f2, line2)) {
                 if (line1 != line2) {
                     return true;
                 }

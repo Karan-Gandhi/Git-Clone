@@ -9,7 +9,45 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7981ad3e-2864-417a-9647-69a9df938206" name="Changes" comment="" />
+    <list default="true" id="7981ad3e-2864-417a-9647-69a9df938206" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitc/index" beforeDir="false" afterPath="$PROJECT_DIR$/.gitc/index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/0lnhkbj2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/11vbivc6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/17kkwmhm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/1g9h187k" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/4eurzn4g" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/61fil0i8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/6v2cehmq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/a16a2w6w" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/ak4x0tb0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/cc1o5boc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/cwi2mthu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/f6c356us" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/hdebyaes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/khskmk4e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/mdljxw0l" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/mwtl08jd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/nlyzfop3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/nxs6n8sa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/opx5czkm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/p4mwvb27" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/prv3i38j" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/q50bwgao" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/qt0oph6j" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/tykf8pgj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/u93zzvmz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/uvpz5hvn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/w0b5diwx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/y2d1074q" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/zv7rsdap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/refs/heads/master" beforeDir="false" afterPath="$PROJECT_DIR$/.gitc/refs/heads/master" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/gitc" beforeDir="false" afterPath="$PROJECT_DIR$/bin/gitc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/gitc.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hello.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Files.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Files.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/new_file" beforeDir="false" afterPath="$PROJECT_DIR$/src/new_file" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +119,7 @@
       <workItem from="1703613655427" duration="3496000" />
       <workItem from="1703656405609" duration="1938000" />
       <workItem from="1703668852766" duration="2132000" />
-      <workItem from="1703681916752" duration="848000" />
+      <workItem from="1703681916752" duration="2871000" />
     </task>
     <servers />
   </component>
