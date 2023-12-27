@@ -93,22 +93,22 @@ namespace gitc {
         }
 
         static bool check_for_changes(const std::string &file1, const std::string &file2) {
+            // TODO: This doesn't work if lines were appended at the end.
             std::ifstream f1(file1);
             std::ifstream f2(file2);
 
-//            std::cout << file1 << ' ' << file2 << ' ' << f1.peek() << ' ' << f2.peek() << std::endl;
-
-            if (!f1.good() || !f2.good()) {
+            if (!f1.good() || !f2.good() || f1.peek() != f2.peek()) {
                 return true;
             }
 
             std::string line1, line2;
 
             while (std::getline(f1, line1) && std::getline(f2, line2)) {
-                if (line1 != line2) {
+                if (line1 != line2 || f1.peek() != f2.peek()) {
                     return true;
                 }
             }
+
 
             return false;
         }
