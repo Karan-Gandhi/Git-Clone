@@ -42,6 +42,29 @@ namespace gitc {
             return entries;
         }
 
+        std::string get_hash_of_directory(const std::string &path) {
+            if (path.find('/') == std::string::npos) {
+                for (Tree_entry *entry: entries) {
+                    if (entry->path == path) {
+                        return entry->hash;
+                    }
+                }
+
+                return "";
+            }
+
+            std::string top_directory = path.substr(0, path.find('/'));
+            std::string next_path = path.substr(path.find('/') + 1);
+
+            for (Tree_entry *entry: entries) {
+                if (entry->path == top_directory) {
+                    Tree *tree = new Tree(entry->hash);
+                    return tree->get_hash_of_directory(next_path);
+                }
+            }
+            return "";
+        }
+
     private:
         std::string hash;
         std::vector<Tree_entry *> entries;

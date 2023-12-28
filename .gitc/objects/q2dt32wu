@@ -42,7 +42,8 @@ namespace gitc {
             new_commit->commit_message = message;
             new_commit->timestamp = time(nullptr);
 
-            int files_changed = create_tree_recursively(index.get_entries(), new_commit->tree_hash);
+            int files_changed = create_tree_recursively(index.get_entries(), new_commit->tree_hash, previous_commit_hash,
+                                                        ".");
 
             std::cout << "[master] " << new_commit->commit_hash << ": " << message << std::endl;
             std::cout << files_changed << " files changed" << std::endl;
@@ -117,7 +118,8 @@ namespace gitc {
             file << commit_message << std::endl;
         }
 
-        static int create_tree_recursively(std::vector<Index_entry *> entries, const std::string &current_tree_hash) {
+        static int create_tree_recursively(std::vector<Index_entry *> entries, const std::string &current_tree_hash,
+                                           const std::string &last_commit_hash, const std::string &current_path) {
             std::vector<std::string> directories;
             std::vector<std::string> files;
             int files_changed = 0;
@@ -140,6 +142,7 @@ namespace gitc {
 
             for (auto &directory: directories) {
                 std::vector<Index_entry *> directory_entries;
+                bool changed = false;
                 for (Index_entry *entry: entries) {
                     if (entry->path.find(directory) == 0) {
                         Index_entry *new_entry = new Index_entry();
@@ -148,12 +151,29 @@ namespace gitc {
                         new_entry->hash = entry->hash;
                         new_entry->stage_number = entry->stage_number;
 
+                        if (entry->stage_number == STAGED) {
+                            changed = true;
+                        }
+
                         directory_entries.push_back(new_entry);
                     }
                 }
 
+                if (!changed) {
+                    // get the hash of the tree for the same directory from the prev commit
+//                    std::string prev_tree_hash = new_tree->get_hash_of_directory(directory);
+                    Commit *prev_commit = new Commit(last_commit_hash);
+                    Tree *prev_root_tree = new Tree(prev_commit->tree_hash);
+                    std::string prev_tree_hash = prev_root_tree->get_hash_of_directory(
+                            Files::join_path(current_path, directory));
+
+                    new_tree->add_entry(directory, prev_tree_hash, "tree");
+                    continue;
+                }
+
                 std::string next_tree_hash = Files::create_hash(HASH_LENGTH);
-                files_changed += create_tree_recursively(directory_entries, next_tree_hash);
+                files_changed += create_tree_recursively(directory_entries, next_tree_hash, last_commit_hash,
+                                                         Files::join_path(current_path, directory));
                 new_tree->add_entry(directory, next_tree_hash, "tree");
             }
 

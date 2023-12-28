@@ -11,16 +11,54 @@
   <component name="ChangeListManager">
     <list default="true" id="7981ad3e-2864-417a-9647-69a9df938206" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitc/index" beforeDir="false" afterPath="$PROJECT_DIR$/.gitc/index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/03st1xxl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/0n8cyvjm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/4cyw9ox5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/4j1id869" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/o4t9aw8n" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitc/objects/wll6p3oc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/0qzd00rr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/3bcizoli" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/3fmrmg3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/3t83hy11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/49n3qc0y" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/60ga3ji6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/61miic6w" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/6wjjth4j" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/8i6xr58b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/97r59sp7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/9aamljm4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/9u6s8n5l" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/9xew6zyi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/a08vutne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/acjzv4lu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/b7lot0bq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/c4u7jea6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/czgvkkvs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/dh9rul7r" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/dhs7a2xl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/do3hog7v" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/e723y9xu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/es0tutz3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/fpz20uuw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/g6jfng9j" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/h0dsyac4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/h6nhgtlx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/hadnh0t1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/hip2qtjv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/in7x6af7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/km3jxdpm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/l3nsr6d1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/labu3lvj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/mnjaf704" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/nymho3tl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/p967f31q" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/txtb6qxj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/vzcb8and" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/w833xx9d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/waq6uo9w" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/wiy4x5z2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/xjzkwx50" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitc/objects/zdwz5zra" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitc/refs/heads/master" beforeDir="false" afterPath="$PROJECT_DIR$/.gitc/refs/heads/master" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/gitc" beforeDir="false" afterPath="$PROJECT_DIR$/bin/gitc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hello.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_file" beforeDir="false" afterPath="$PROJECT_DIR$/new_file" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commit.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commit.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
