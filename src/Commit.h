@@ -72,7 +72,7 @@ namespace gitc {
 
         void delete_commit() {
             // delete the commit from the .gitc/objects directory
-            recursively_delete_tree(tree_hash);
+            recursively_delete_tree(tree_hash, new Commit(parent_hash));
         }
 
     private:
@@ -212,19 +212,30 @@ namespace gitc {
             }
         }
 
-        static void recursively_delete_tree(const std::string &current_tree_hash) {
+        static void recursively_delete_tree(const std::string &current_tree_hash, Commit* parent_commit) {
             Tree *current_tree = new Tree(current_tree_hash);
             std::vector<Tree::Tree_entry *> entries = current_tree->get_entries();
 
             for (auto entry: entries) {
+                if (parent_commit->depends_on(entry->hash)) { // can do this more efficiently
+                    continue;
+                }
                 if (entry->type == "tree") {
-                    recursively_delete_tree(entry->hash);
+                    recursively_delete_tree(entry->hash, parent_commit);
                 } else {
                     Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + entry->hash));
                 }
             }
 
             Files::delete_file(Files::join_path(Files::root_path(), ".gitc/objects/" + current_tree_hash));
+        }
+
+        bool depends_on(const std::string &hash) {
+            // check if the current commit has a file with the given hash
+            Tree *current_tree = new Tree(tree_hash);
+            bool res = current_tree->search_for_hash(hash);
+            delete current_tree;
+            return res;
         }
     };
 

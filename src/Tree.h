@@ -65,6 +65,23 @@ namespace gitc {
             return "";
         }
 
+        bool search_for_hash(const std::string &hash) {
+            for (Tree_entry *entry: entries) {
+                if (entry->hash == hash) {
+                    return true;
+                } else if(entry->type == "tree") {
+                    Tree *tree = new Tree(entry->hash);
+                    if (tree->search_for_hash(hash)) {
+                        delete tree;
+                        return true;
+                    }
+                    delete tree;
+                }
+            }
+
+            return false;
+        }
+
     private:
         std::string hash;
         std::vector<Tree_entry *> entries;

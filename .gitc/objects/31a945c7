@@ -13,6 +13,9 @@ namespace gitc {
     class gitc {
     public:
         gitc() {
+#ifndef __linux__
+            srand(time(NULL));
+#endif
             index = new Index();
             head = new Head();
 

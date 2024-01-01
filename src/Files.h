@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <random>
+#include <ctime>
 
 #include "../include/cwalk.h"
 
@@ -56,8 +57,8 @@ namespace gitc {
             return files;
         }
 
-        static std::string root_path(const std::string &path = get_cwd()) {
-            if (path == "/") return "";
+        static std::string root_path(const std::string &path = get_cwd(), const std::string &previous_path = "") {
+            if (path == previous_path) return "";
             if (auto dir = opendir(path.c_str())) {
                 while (auto f = readdir(dir)) {
                     if (std::string(f->d_name) == "." || std::string(f->d_name) == "..")
@@ -70,8 +71,7 @@ namespace gitc {
                 }
             }
 
-
-            return root_path(join_path(path, "../"));
+            return root_path(join_path(path, "../"), path);
         }
 
         static std::string relative_root_path() {
@@ -194,14 +194,15 @@ namespace gitc {
             }
         }
 
-    private:
-
-
         static unsigned long get_random_number(const int min, const int max) {
+#ifdef __linux__
             std::random_device dev;
             std::mt19937 rng(dev());
             std::uniform_int_distribution<std::mt19937::result_type> distribution(min, max);
             return distribution(rng);
+#else
+            return rand() % (max - min + 1) + min;
+#endif
         }
     };
 
